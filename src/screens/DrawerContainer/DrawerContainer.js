@@ -3,6 +3,7 @@ import { View, Text, SafeAreaView, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import styles from './styles';
 import MenuButton from '../../components/MenuButton/MenuButton';
+import { Avatar } from 'react-native-elements';
 
 export default class DrawerContainer extends React.Component {
   render() {
@@ -12,6 +13,22 @@ export default class DrawerContainer extends React.Component {
         <View style={styles.profile}>
           <SafeAreaView>
 
+
+            <Avatar
+              size={75}
+              rounded
+              title="MD"
+              onPress={() => console.log("Works!")}
+              activeOpacity={0.5}
+              containerStyle={{ marginLeft: 20, marginTop: 10 }}
+
+              source={{
+                uri:
+                  'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
+              }}
+
+
+            />
           </SafeAreaView>
         </View>
         <View style={styles.content}>

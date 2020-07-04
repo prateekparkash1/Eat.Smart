@@ -7,6 +7,7 @@ import DrawerActions from 'react-navigation';
 
 import SearchImage from '../../components/SearchImage/SearchImage';
 
+
 import { getCategoryName } from '../../data/MockDataAPI';
 import DietCarousel from '../../components/Carousel/DietCarousel';
 
