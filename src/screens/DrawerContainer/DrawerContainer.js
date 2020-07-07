@@ -26,9 +26,8 @@ export default class DrawerContainer extends React.Component {
                 uri:
                   'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
               }}
-
-
             />
+            <Text style={{ marginLeft: 20, marginTop: 20, fontSize: '20px' }}>Welcome </Text>
           </SafeAreaView>
         </View>
         <View style={styles.content}>

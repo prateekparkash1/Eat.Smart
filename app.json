@@ -2,6 +2,9 @@
   "expo": {
     "name": "recipe-app",
     "slug": "recipe-app",
+    "facebookAppId": "2753963464882148",
+    "facebookScheme": "fb2753963464882148",
+    "facebookDisplayName": "Eat.Smart",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

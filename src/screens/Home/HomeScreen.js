@@ -6,11 +6,10 @@ import MenuImage from '../../components/MenuImage/MenuImage';
 import DrawerActions from 'react-navigation';
 
 import SearchImage from '../../components/SearchImage/SearchImage';
-
-
 import { getCategoryName } from '../../data/MockDataAPI';
 import DietCarousel from '../../components/Carousel/DietCarousel';
 
+import SwitchButton from '../../components/SwitchButton/SwitchButton'
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
@@ -49,13 +48,17 @@ export default class HomeScreen extends React.Component {
     return (
       <>
         <DietCarousel />
-        <View>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginEnd: 20 }}>
           <Text style={{
             fontSize: 25,
             paddingLeft: 20,
             paddingTop: 20,
             paddingBottom: 20
           }}>Trending Recipes</Text>
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <Text style={{ fontSize: '20px' }}>Veg </Text>
+            <SwitchButton />
+          </View>
         </View>
         <FlatList
           vertical
