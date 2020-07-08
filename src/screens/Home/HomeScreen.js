@@ -8,7 +8,6 @@ import DrawerActions from 'react-navigation';
 import SearchImage from '../../components/SearchImage/SearchImage';
 import { getCategoryName } from '../../data/MockDataAPI';
 import DietCarousel from '../../components/Carousel/DietCarousel';
-
 import SwitchButton from '../../components/SwitchButton/SwitchButton'
 
 export default class HomeScreen extends React.Component {
@@ -29,6 +28,7 @@ export default class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
   }
+
 
   onPressRecipe = item => {
     this.props.navigation.navigate('Recipe', { item });
