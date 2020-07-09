@@ -110,7 +110,6 @@ export default class SearchScreen extends React.Component {
           renderItem={this.renderRecipes}
           keyExtractor={item => `${item.recipeId}`}
           vertical
-
         />
 
 
