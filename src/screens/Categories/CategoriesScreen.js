@@ -8,8 +8,7 @@ import {
   ActivityIndicator
 } from 'react-native';
 import styles from './styles';
-import { categories } from '../../data/dataArrays';
-// import { getNumberOfRecipes } from '../../data/MockDataAPI';
+// import { categories } from '../../data/dataArrays';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default class CategoriesScreen extends React.Component {
@@ -17,18 +16,16 @@ export default class CategoriesScreen extends React.Component {
     title: 'Categories'
   };
 
-
-
   constructor(props) {
     super(props);
-
 
   }
 
   state = {
     recipes: [],
-    //Have a loading state where when data retrieve returns data. 
-    loading: true
+    loading: true,
+    categories: [],
+    cat_loading: true
   }
 
 
@@ -38,6 +35,11 @@ export default class CategoriesScreen extends React.Component {
       const recipesApiCall = await fetch('https://pacific-coast-24914.herokuapp.com/recipes');
       const recipesapi = await recipesApiCall.json();
       this.setState({ recipes: recipesapi, loading: false });
+      const categoriesApiCall = await fetch('https://pacific-coast-24914.herokuapp.com/categories');
+      const categoriesapi = await categoriesApiCall.json();
+      this.setState({ categories: categoriesapi, cat_loading: false });
+
+
     } catch (err) {
       console.log("Error fetching data-----------", err);
     }
@@ -75,7 +77,7 @@ export default class CategoriesScreen extends React.Component {
       return (
         <View>
           <FlatList
-            data={categories}
+            data={this.state.categories}
             renderItem={this.renderCategory}
             keyExtractor={item => `${item.id}`}
           />
@@ -83,7 +85,14 @@ export default class CategoriesScreen extends React.Component {
       );
     }
     else {
-      return <ActivityIndicator />
+      return (
+        <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+          <Text style={{ margin: 15, fontSize: 17 }}> Firing up the kitchen! </Text>
+          <ActivityIndicator hidesWhenStopped={true} />
+        </View>
+
+
+      )
     }
 
 
