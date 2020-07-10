@@ -9,16 +9,6 @@ import {
 import styles from './styles';
 import { ListItem, SearchBar } from 'react-native-elements';
 
-import {
-  getCategoryName,
-  getRecipesByRecipeName,
-  getRecipesByCategoryName,
-  getRecipesByIngredientName
-} from '../../data/MockDataAPI';
-
-
-
-
 export default class SearchScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     const { params = {} } = navigation.state;
@@ -28,22 +18,144 @@ export default class SearchScreen extends React.Component {
     super(props);
     this.state = {
       value: '',
-      data: []
+      data: [],
+      recipes: [],
+      loading: true,
+      categories: [],
+      cat_loading: true,
+      ingredients: [],
+      ind_loading: true
     };
   }
 
-  componentDidMount() {
+
+  async componentDidMount() {
     const { navigation } = this.props;
+    try {
+      const recipesApiCall = await fetch('https://pacific-coast-24914.herokuapp.com/recipes');
+      const recipesapi = await recipesApiCall.json();
+      this.setState({ recipes: recipesapi, loading: false });
+      const categoriesApiCall = await fetch('https://pacific-coast-24914.herokuapp.com/categories');
+      const categoriesapi = await categoriesApiCall.json();
+      this.setState({ categories: categoriesapi, cat_loading: false });
+      const ingredientsApiCall = await fetch('https://pacific-coast-24914.herokuapp.com/ingredients');
+      const ingredientsapi = await ingredientsApiCall.json();
+      this.setState({ ingredients: ingredientsapi, ind_loading: false });
+    } catch (err) {
+      console.log("Error fetching data-----------", err);
+    }
     navigation.setParams({
       handleSearch: this.handleSearch,
       data: this.getValue
     });
   }
 
+  getCategoryName(categoryId) {
+    let name;
+    this.state.categories.map(data => {
+      if (data.id == categoryId) {
+        name = data.name;
+      }
+    });
+    return name;
+  }
+
+  getRecipes(categoryId) {
+    const recipesArray = [];
+    this.state.recipes.map(data => {
+      if (data.categoryId == categoryId) {
+        recipesArray.push(data);
+      }
+    });
+    return recipesArray;
+  }
+
+
+  getRecipesByIngredient(ingredientId) {
+    const recipesArray = [];
+    this.state.recipes.map(data => {
+      data.ingredients.map(index => {
+        if (index[0] == ingredientId) {
+          recipesArray.push(data);
+        }
+      });
+    });
+    return recipesArray;
+  }
+
+  getRecipesByIngredientName(ingredientName) {
+    const nameUpper = ingredientName.toUpperCase();
+    const recipesArray = [];
+    this.state.ingredients.map(data => {
+      if (data.name.toUpperCase().includes(nameUpper)) {
+        const recipes = this.getRecipesByIngredient(data.ingredientId);
+        const unique = [...new Set(recipes)];
+        unique.map(item => {
+          recipesArray.push(item);
+        });
+      }
+    });
+    const uniqueArray = [...new Set(recipesArray)];
+    return uniqueArray;
+  }
+
+  getRecipesByRecipeName(recipeName) {
+    const nameUpper = recipeName.toUpperCase();
+    const recipesArray = [];
+    this.state.recipes.map(data => {
+      if (data.title.toUpperCase().includes(nameUpper)) {
+        recipesArray.push(data);
+      }
+    });
+    return recipesArray;
+  }
+
+  getRecipesByCategoryName(categoryName) {
+    const nameUpper = categoryName.toUpperCase();
+    const recipesArray = [];
+    this.state.categories.map(data => {
+      if (data.name.toUpperCase().includes(nameUpper)) {
+        const recipes = this.getRecipes(data.id);
+        recipes.map(item => {
+          recipesArray.push(item);
+        });
+      }
+    });
+    return recipesArray;
+  }
+
+
+  getRecipesByRecipeName(recipeName) {
+    const nameUpper = recipeName.toUpperCase();
+    const recipesArray = [];
+    this.state.recipes.map(data => {
+      if (data.title.toUpperCase().includes(nameUpper)) {
+        recipesArray.push(data);
+      }
+    });
+    return recipesArray;
+  }
+
+
+
+  getRecipesByIngredient(ingredientId) {
+    const recipesArray = [];
+    this.state.recipes.map(data => {
+      data.ingredients.map(index => {
+        if (index[0] == ingredientId) {
+          recipesArray.push(data);
+        }
+      });
+    });
+    return recipesArray;
+  }
+
+
+
   handleSearch = text => {
-    var recipeArray1 = getRecipesByRecipeName(text);
-    var recipeArray2 = getRecipesByCategoryName(text);
-    var recipeArray3 = getRecipesByIngredientName(text);
+    var recipeArray1 = this.getRecipesByRecipeName(text);
+    var recipeArray2 = this.getRecipesByCategoryName(text);
+    var recipeArray3 = this.getRecipesByIngredientName(text);
     var aux = recipeArray1.concat(recipeArray2).concat(recipeArray3);
     var recipeArray = [...new Set(aux)];
     if (text == '') {
@@ -72,7 +184,7 @@ export default class SearchScreen extends React.Component {
       <View style={styles.container}>
         <Image style={styles.photo} source={{ uri: item.photo_url }} />
         <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.category}>{getCategoryName(item.categoryId)}</Text>
+        <Text style={styles.category}>{this.getCategoryName(item.categoryId)}</Text>
       </View>
     </TouchableOpacity>
   );

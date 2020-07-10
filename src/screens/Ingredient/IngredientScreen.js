@@ -7,11 +7,7 @@ import {
   Image, TouchableOpacity
 } from 'react-native';
 import styles from './styles';
-import {
-  getIngredientUrl,
-  getRecipesByIngredient,
-  getCategoryName
-} from '../../data/MockDataAPI';
+
 
 export default class IngredientScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -22,7 +18,65 @@ export default class IngredientScreen extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      recipes: [],
+      loading: true,
+      categories: [],
+      cat_loading: true,
+      ingredients: [],
+      ind_loading: true
+    };
   }
+
+  async componentDidMount() {
+    const { navigation } = this.props;
+    try {
+      const recipesApiCall = await fetch('https://pacific-coast-24914.herokuapp.com/recipes');
+      const recipesapi = await recipesApiCall.json();
+      this.setState({ recipes: recipesapi, loading: false });
+      const categoriesApiCall = await fetch('https://pacific-coast-24914.herokuapp.com/categories');
+      const categoriesapi = await categoriesApiCall.json();
+      this.setState({ categories: categoriesapi, cat_loading: false });
+      const ingredientsApiCall = await fetch('https://pacific-coast-24914.herokuapp.com/ingredients');
+      const ingredientsapi = await ingredientsApiCall.json();
+      this.setState({ ingredients: ingredientsapi, ind_loading: false });
+    } catch (err) {
+      console.log("Error fetching data-----------", err);
+    }
+  }
+
+  getIngredientUrl(ingredientID) {
+    let url;
+    this.state.ingredients.map(data => {
+      if (data.ingredientId == ingredientID) {
+        url = data.photo_url;
+      }
+    });
+    return url;
+  }
+
+  getRecipesByIngredient(ingredientId) {
+    const recipesArray = [];
+    this.state.recipes.map(data => {
+      data.ingredients.map(index => {
+        if (index[0] == ingredientId) {
+          recipesArray.push(data);
+        }
+      });
+    });
+    return recipesArray;
+  }
+
+  getCategoryName(categoryId) {
+    let name;
+    this.state.categories.map(data => {
+      if (data.id == categoryId) {
+        name = data.name;
+      }
+    });
+    return name;
+  }
+
 
   onPressRecipe = item => {
     this.props.navigation.navigate('Recipe', { item });
@@ -34,7 +88,7 @@ export default class IngredientScreen extends React.Component {
         <View style={styles.container}>
           <Image style={styles.photo} source={{ uri: item.photo_url }} />
           <Text style={styles.title}>{item.title}</Text>
-          <Text style={styles.category}>{getCategoryName(item.categoryId)}</Text>
+          <Text style={styles.category}>{this.getCategoryName(item.categoryId)}</Text>
         </View>
       </TouchableOpacity>
     </TouchableOpacity>
@@ -43,7 +97,7 @@ export default class IngredientScreen extends React.Component {
   render() {
     const { navigation } = this.props;
     const ingredientId = navigation.getParam('ingredient');
-    const ingredientUrl = getIngredientUrl(ingredientId);
+    const ingredientUrl = this.getIngredientUrl(ingredientId);
     const ingredientName = navigation.getParam('name');
     return (
       <ScrollView style={styles.mainContainer}>
@@ -56,7 +110,7 @@ export default class IngredientScreen extends React.Component {
             vertical
             showsVerticalScrollIndicator={false}
             numColumns={2}
-            data={getRecipesByIngredient(ingredientId)}
+            data={this.getRecipesByIngredient(ingredientId)}
             renderItem={this.renderRecipes}
             keyExtractor={item => `${item.recipeId}`}
           />

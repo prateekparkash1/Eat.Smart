@@ -9,10 +9,6 @@ import {
   TouchableOpacity
 } from 'react-native';
 import styles from './styles';
-import {
-  getIngredientName,
-  getAllIngredients,
-} from '../../data/MockDataAPI';
 
 export default class IngredientsDetailsScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -26,10 +22,51 @@ export default class IngredientsDetailsScreen extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      ingredients: [],
+      ind_loading: true
+    };
+
+
   }
 
+  async componentDidMount() {
+    const { navigation } = this.props;
+    try {
+      const ingredientsApiCall = await fetch('https://pacific-coast-24914.herokuapp.com/ingredients');
+      const ingredientsapi = await ingredientsApiCall.json();
+      this.setState({ ingredients: ingredientsapi, ind_loading: false });
+    } catch (err) {
+      console.log("Error fetching data-----------", err);
+    }
+  }
+
+  getIngredientName(ingredientID) {
+    let name;
+    this.state.ingredients.map(data => {
+      if (data.ingredientId == ingredientID) {
+        name = data.name;
+      }
+    });
+    return name;
+  }
+
+  getAllIngredients(idArray) {
+    const ingredientsArray = [];
+    idArray.map(index => {
+      this.state.ingredients.map(data => {
+        if (data.ingredientId == index[0]) {
+          ingredientsArray.push([data, index[1]]);
+        }
+      });
+    });
+    return ingredientsArray;
+  }
+
+
+
   onPressIngredient = item => {
-    let name = getIngredientName(item.ingredientId);
+    let name = this.getIngredientName(item.ingredientId);
     let ingredient = item.ingredientId;
     this.props.navigation.navigate('Ingredient', { ingredient, name });
   };
@@ -47,7 +84,7 @@ export default class IngredientsDetailsScreen extends React.Component {
   render() {
     const { navigation } = this.props;
     const item = navigation.getParam('ingredients');
-    const ingredientsArray = getAllIngredients(item);
+    const ingredientsArray = this.getAllIngredients(item);
 
     return (
       <>

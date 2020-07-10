@@ -7,7 +7,6 @@ import {
   Image
 } from 'react-native';
 import styles from './styles';
-import { getRecipes, getCategoryName } from '../../data/MockDataAPI';
 
 export default class RecipesListScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -18,6 +17,50 @@ export default class RecipesListScreen extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      recipes: [],
+      loading: true,
+      categories: [],
+      cat_loading: true
+    }
+
+  }
+
+  async componentDidMount() {
+    try {
+
+      const recipesApiCall = await fetch('https://pacific-coast-24914.herokuapp.com/recipes');
+      const recipesapi = await recipesApiCall.json();
+      this.setState({ recipes: recipesapi, loading: false });
+      const categoriesApiCall = await fetch('https://pacific-coast-24914.herokuapp.com/categories');
+      const categoriesapi = await categoriesApiCall.json();
+      this.setState({ categories: categoriesapi, cat_loading: false });
+
+
+    } catch (err) {
+      console.log("Error fetching data-----------", err);
+    }
+  }
+
+
+  getRecipes(categoryId) {
+    const recipesArray = [];
+    this.state.recipes.map(data => {
+      if (data.categoryId == categoryId) {
+        recipesArray.push(data);
+      }
+    });
+    return recipesArray;
+  }
+
+  getCategoryName(categoryId) {
+    let name;
+    this.state.categories.map(data => {
+      if (data.id == categoryId) {
+        name = data.name;
+      }
+    });
+    return name;
   }
 
   onPressRecipe = item => {
@@ -29,7 +72,7 @@ export default class RecipesListScreen extends React.Component {
       <View style={styles.container}>
         <Image style={styles.photo} source={{ uri: item.photo_url }} />
         <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.category}>{getCategoryName(item.categoryId)}</Text>
+        <Text style={styles.category}>{this.getCategoryName(item.categoryId)}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -37,7 +80,7 @@ export default class RecipesListScreen extends React.Component {
   render() {
     const { navigation } = this.props;
     const item = navigation.getParam('category');
-    const recipesArray = getRecipes(item.id);
+    const recipesArray = this.getRecipes(item.id);
     return (
       <View>
         <FlatList
