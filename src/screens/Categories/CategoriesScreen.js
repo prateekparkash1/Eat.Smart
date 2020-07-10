@@ -8,7 +8,6 @@ import {
   ActivityIndicator
 } from 'react-native';
 import styles from './styles';
-// import { categories } from '../../data/dataArrays';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default class CategoriesScreen extends React.Component {
