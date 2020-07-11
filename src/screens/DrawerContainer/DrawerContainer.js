@@ -24,7 +24,7 @@ export default class DrawerContainer extends React.Component {
 
               source={{
                 uri:
-                  'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
+                  'https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1694402474031849&height=500&ext=1597045702&hash=AeQedtV3eXP_NTrs',
               }}
             />
             <Text style={{ marginLeft: 20, marginTop: 20, fontSize: '20px' }}>Welcome </Text>
