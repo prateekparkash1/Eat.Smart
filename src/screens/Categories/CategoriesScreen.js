@@ -13,7 +13,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default class CategoriesScreen extends React.Component {
   static navigationOptions = {
-    title: 'Categories'
+    title: 'Cuisines'
   };
 
   constructor(props) {

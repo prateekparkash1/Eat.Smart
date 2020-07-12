@@ -18,7 +18,7 @@ const Tab = createBottomTabNavigator();
 const MainNavigator = createStackNavigator(
   {
     Home: HomeScreen,
-    Categories: CategoriesScreen,
+    Cuisines: CategoriesScreen,
     Recipe: RecipeScreen,
     RecipesList: RecipesListScreen,
     Ingredient: IngredientScreen,

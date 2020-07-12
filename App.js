@@ -12,7 +12,7 @@
 
 
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, Button, SafeAreaView, Image, ImageBackground } from 'react-native';
 import AppContainer from './src/navigations/AppNavigation';
 import * as Facebook from 'expo-facebook';
 import { render } from 'react-dom';
@@ -41,10 +41,11 @@ export default function App() {
           .then(data => {
             setLoggedinStatus(true);
             setUserData(data);
+            console.log(data);
           });
 
       } else {
-        // type === 'cancel'
+        setLoggedinStatus(false)
       }
     } catch ({ message }) {
       alert(`Facebook Login Error: ${message}`);
@@ -57,12 +58,28 @@ export default function App() {
   if (!isLoggedin) {
 
     return (
+
       <>
-        <SafeAreaView>
-          <Button
-            onPress={logIn} title="Learn More"
-          />
-        </SafeAreaView>
+        <SafeAreaView style={{ "backgroundColor": "#e3eee9" }}></SafeAreaView>
+        <ImageBackground source={require('./assets/background.jpeg')} style={styles.image}>
+          <View style={{
+            display: "flex",
+            flex: 1,
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "space-around",
+          }}>
+            <Image source={require('./assets/logo.gif')} />
+            <View style={{ display: "flex-inline", flexDirection: "row", justifyContent: "space-evenly", alignItems: "stretch" }}>
+              <Image source={require('./assets/icons/fb.png')} style={{ height: 40, width: 40 }} />
+              <Button
+                onPress={logIn}
+                title="Login with Facebook"
+              />
+            </View>
+          </View>
+        </ImageBackground>
+
       </>
     )
 
@@ -75,5 +92,10 @@ export default function App() {
 
 }
 
-
-
+const styles = StyleSheet.create({
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center"
+  }
+})
