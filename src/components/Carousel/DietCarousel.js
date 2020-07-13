@@ -94,30 +94,18 @@ import {
 
 const ENTRIES1 = [
     {
-        title: 'Beautiful and dramatic Antelope Canyon',
-        subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
-        illustration: 'https://i.imgur.com/UYiroysl.jpg',
+        title: 'Breakfast',
+        illustration: require('../../../assets/breakfast.png'),
     },
     {
-        title: 'Earlier this morning, NYC',
-        subtitle: 'Lorem ipsum dolor sit amet',
-        illustration: 'https://i.imgur.com/UPrs1EWl.jpg',
+        title: 'Lunch',
+        illustration: require('../../../assets/lunch.png'),
     },
     {
-        title: 'White Pocket Sunset',
-        subtitle: 'Lorem ipsum dolor sit amet et nuncat ',
-        illustration: 'https://i.imgur.com/MABUbpDl.jpg',
+        title: 'Dinner',
+        illustration: require('../../../assets/dinner.png'),
     },
-    {
-        title: 'Acrocorinth, Greece',
-        subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
-        illustration: 'https://i.imgur.com/KZsmUi2l.jpg',
-    },
-    {
-        title: 'The lone tree, majestic landscape of New Zealand',
-        subtitle: 'Lorem ipsum dolor sit amet',
-        illustration: 'https://i.imgur.com/2nCt3Sbl.jpg',
-    },
+
 ];
 const { width: screenWidth } = Dimensions.get('window');
 
@@ -136,22 +124,24 @@ const DietCarousel = props => {
     const renderItem = ({ item, index }, parallaxProps) => {
         return (
             <View style={styles.item}>
+
                 <ParallaxImage
-                    source={{ uri: item.illustration }}
+                    source={item.illustration}
                     containerStyle={styles.imageContainer}
                     style={styles.image}
-                    parallaxFactor={0.4}
+                    parallaxFactor={0}
                     {...parallaxProps}
                 />
-
             </View>
         );
     };
 
     return (
         <View style={{ paddingTop: 10 }}>
+
             <Carousel
-                layout={"stack"}
+                onPress={goForward}
+                layout={"default"}
                 layoutCardOffset={`18`}
                 ref={carouselRef}
                 sliderWidth={screenWidth}
@@ -161,6 +151,9 @@ const DietCarousel = props => {
                 renderItem={renderItem}
                 hasParallaxImages={true}
             />
+
+
+
         </View>
     );
 };
@@ -185,4 +178,7 @@ const styles = StyleSheet.create({
         ...StyleSheet.absoluteFillObject,
         resizeMode: 'cover',
     },
+    title: {
+        fontSize: 20
+    }
 });

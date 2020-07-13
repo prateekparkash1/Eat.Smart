@@ -1,33 +1,28 @@
 {
   "expo": {
-    "name": "recipe-app",
-    "slug": "recipe-app",
+    "name": "Recipe-App",
+    "slug": "Recipe-App",
     "facebookAppId": "2753963464882148",
     "facebookScheme": "fb2753963464882148",
     "facebookDisplayName": "Eat.Smart",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logo.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#e3eee9"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": ["**/*"],
     "android": {
-      "package": "com.mba.developers",
+      "package": "com.quirky_developers.eatsmart",
       "versionCode": 1
     },
-    "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.mba.developers",
-      "buildNumber": "1.0.0"
-    },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/logo.png"
     }
   }
 }

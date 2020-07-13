@@ -27,14 +27,31 @@ export default class DrawerContainer extends React.Component {
                   'https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1694402474031849&height=500&ext=1597045702&hash=AeQedtV3eXP_NTrs',
               }}
             />
-            <Text style={{ marginLeft: 20, marginTop: 20, fontSize: '20px' }}>Welcome </Text>
+            <Text style={{ marginLeft: 20, marginTop: 20, fontSize: 20 }}>Welcome </Text>
           </SafeAreaView>
         </View>
         <View style={styles.content}>
           <View style={styles.container}>
+
             <MenuButton
-              title="Cuisines"
+              title="Recipe of the Day"
+              source={require('../../../assets/icons/rotd.png')}
+              onPress={() => {
+                navigation.navigate('Cuisines');
+                navigation.closeDrawer();
+              }}
+            />
+            <MenuButton
+              title="All Cuisines"
               source={require('../../../assets/icons/category.png')}
+              onPress={() => {
+                navigation.navigate('Cuisines');
+                navigation.closeDrawer();
+              }}
+            />
+            <MenuButton
+              title="All Recipes"
+              source={require('../../../assets/icons/recipe.png')}
               onPress={() => {
                 navigation.navigate('Cuisines');
                 navigation.closeDrawer();

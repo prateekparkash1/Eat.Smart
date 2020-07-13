@@ -3,9 +3,11 @@ import { View, Switch, StyleSheet } from "react-native";
 import styles from './styles';
 
 export default function SwitchButton() {
-    const [isEnabled, setIsEnabled] = useState(false);
-    const toggleSwitch = () => setIsEnabled(previousState => !previousState);
-
+    const [isEnabled, setIsEnabled] = useState(true);
+    const toggleSwitch = () => {
+        setIsEnabled(previousState => !previousState);
+        console.log(`veg: ${isEnabled}`);
+    }
     return (
         <View style={styles.container}>
             <Switch
@@ -14,8 +16,6 @@ export default function SwitchButton() {
                 ios_backgroundColor="#3e3e3e"
                 onValueChange={toggleSwitch}
                 value={isEnabled}
-
-
             />
         </View>
     );

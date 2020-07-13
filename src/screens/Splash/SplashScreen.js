@@ -18,8 +18,16 @@ export default class SplashScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Image style={styles.photo} source={require('../../../assets/icons/cookie100.png')} />
+        <Image style={stylesnew.image} source={require('../../../assets/splash.png')} />
       </View>
     );
   }
 }
+
+const stylesnew = StyleSheet.create({
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center"
+  }
+})
