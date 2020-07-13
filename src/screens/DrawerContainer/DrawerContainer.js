@@ -12,22 +12,20 @@ export default class DrawerContainer extends React.Component {
       <>
         <View style={styles.profile}>
           <SafeAreaView>
-
-
             <Avatar
-              size={75}
+              size={100}
               rounded
               title="MD"
               onPress={() => console.log("Works!")}
               activeOpacity={0.5}
-              containerStyle={{ marginLeft: 20, marginTop: 10 }}
+              containerStyle={{ marginLeft: 20, marginTop: 35 }}
 
               source={{
                 uri:
                   'https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1694402474031849&height=500&ext=1597045702&hash=AeQedtV3eXP_NTrs',
               }}
             />
-            <Text style={{ marginLeft: 20, marginTop: 20, fontSize: 20 }}>Welcome </Text>
+            <Text style={{ marginLeft: 20, marginTop: 10, fontSize: 20 }}>Welcome </Text>
           </SafeAreaView>
         </View>
         <View style={styles.content}>

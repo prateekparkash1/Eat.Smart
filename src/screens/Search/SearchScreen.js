@@ -26,11 +26,12 @@ export default class SearchScreen extends React.Component {
       ingredients: [],
       ind_loading: true
     };
+
   }
 
 
   async componentDidMount() {
-    const { navigation } = this.props;
+
     try {
       const recipesApiCall = await fetch('https://pacific-coast-24914.herokuapp.com/recipes');
       const recipesapi = await recipesApiCall.json();
@@ -44,10 +45,6 @@ export default class SearchScreen extends React.Component {
     } catch (err) {
       console.log("Error fetching data-----------", err);
     }
-    navigation.setParams({
-      handleSearch: this.handleSearch,
-      data: this.getValue
-    });
   }
 
   getCategoryName(categoryId) {

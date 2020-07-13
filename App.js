@@ -9,12 +9,9 @@ export default function App() {
   // const [isLoggedin, setLoggedinStatus] = useState(false);
   // const [userData, setUserData] = useState(null);
 
-  return (
-    <AppContainer />
-  )
+  return <AppContainer />
+
 }
-
-
 //   async function logIn() {
 //     try {
 //       Facebook.initializeAsync('2753963464882148');
@@ -57,14 +54,14 @@ export default function App() {
 //         <SafeAreaView style={{ "backgroundColor": "#e3eee9" }}></SafeAreaView>
 //         <ImageBackground source={require('./assets/background.jpeg')} style={styles.image}>
 //           <View style={{
-//             display: "flex",
+
 //             flex: 1,
 //             flexDirection: "column",
 //             alignItems: "center",
 //             justifyContent: "space-around",
 //           }}>
 //             <Image source={require('./assets/logo.gif')} />
-//             <View style={{ display: "flex-inline", flexDirection: "row", justifyContent: "space-evenly", alignItems: "stretch" }}>
+//             <View style={{ flexDirection: "row", justifyContent: "space-evenly", alignItems: "stretch" }}>
 //               <Image source={require('./assets/icons/fb.png')} style={{ height: 40, width: 40 }} />
 //               <Button
 //                 onPress={logIn}

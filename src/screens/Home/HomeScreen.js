@@ -35,20 +35,16 @@ export default class HomeScreen extends React.Component {
 
   async componentDidMount() {
     try {
-
       const recipesApiCall = await fetch('https://pacific-coast-24914.herokuapp.com/recipes');
       const recipesapi = await recipesApiCall.json();
       this.setState({ recipes: recipesapi, loading: false });
       const categoriesApiCall = await fetch('https://pacific-coast-24914.herokuapp.com/categories');
       const categoriesapi = await categoriesApiCall.json();
       this.setState({ categories: categoriesapi, cat_loading: false });
-
-
     } catch (err) {
       console.log("Error fetching data-----------", err);
     }
   }
-
 
   getCategoryName(categoryId) {
     let name;

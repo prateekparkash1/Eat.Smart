@@ -1,6 +1,17 @@
 import { Text } from 'react-native';
 import React, { Component } from 'react';
-import { recipes, categories, ingredients } from './dataArrays';
+import { categories, ingredients } from './dataArrays';
+
+let recipes;
+
+async function data() {
+
+  const recipesApiCall = await fetch('https://pacific-coast-24914.herokuapp.com/recipes');
+  const recipes = await recipesApiCall.json();
+
+}
+
+data();
 
 
 export function getCategoryById(categoryId) {
