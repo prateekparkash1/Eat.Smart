@@ -1,83 +1,3 @@
-// import * as React from 'react';
-// import {
-//     Text,
-//     View,
-//     SafeAreaView, Image
-// } from 'react-native';
-
-
-// import Carousel, { Pagination, ParallaxImage } from 'react-native-snap-carousel';
-
-// export default class DietCarousel extends React.Component {
-
-
-//     constructor(props) {
-//         super(props);
-//         this.state = {
-//             activeIndex: 0,
-//             carouselItems: [
-//                 {
-//                     title: "Item 1",
-//                     text: "Text 1",
-//                     url: "https://i.imgur.com/2nCt3Sbl.jpg",
-//                 },
-//                 {
-//                     title: "Item 2",
-//                     text: "Text 2",
-//                     url: "https://i.imgur.com/2nCt3Sbl.jpg",
-//                 },
-//                 {
-//                     title: "Item 3",
-//                     text: "Text 3",
-//                     url: "https://i.imgur.com/2nCt3Sbl.jpg",
-//                 },
-
-//             ]
-//         }
-//     }
-
-//     _renderItem({ item, index }, parallaxProps) {
-//         return (
-// <View style={{
-
-//     borderRadius: 5,
-//     height: 200,
-//     padding: 50,
-//     marginLeft: 25,
-//     marginRight: 25,
-// }}>
-//                 <ParallaxImage
-//                     source={{ uri: item.url }}
-//                     parallaxFactor={0.4}
-//                     {...parallaxProps}
-//                 />
-//                 <Text style={{ fontSize: 30 }}>{item.title}</Text>
-//                 <Text>{item.text}</Text>
-//             </View>
-
-//         )
-//     }
-
-//     render() {
-//         return (
-//             <View style={{ paddingTop: 10 }}>
-//                 <Carousel
-//                     layout={"stack"}
-//                     activeSlideAlignment='start'
-//                     layoutCardOffset={`18`}
-//                     ref={ref => this.carousel = ref}
-//                     data={this.state.carouselItems}
-//                     hasParallaxImages={true}
-//                     sliderWidth={400}
-//                     itemWidth={400}
-//                     renderItem={this._renderItem}
-//                     onSnapToItem={index => this.setState({ activeIndex: index })} />
-
-//             </View>
-
-//         );
-//     }
-// }
 
 
 
@@ -88,8 +8,8 @@ import {
     Text,
     Dimensions,
     StyleSheet,
-    TouchableOpacity,
     Platform,
+    TouchableOpacity,
 } from 'react-native';
 
 const ENTRIES1 = [
@@ -117,6 +37,10 @@ const DietCarousel = props => {
         carouselRef.current.snapToNext();
     };
 
+
+
+
+
     useEffect(() => {
         setEntries(ENTRIES1);
     }, []);
@@ -128,11 +52,14 @@ const DietCarousel = props => {
                 <ParallaxImage
                     source={item.illustration}
                     containerStyle={styles.imageContainer}
+                    onPress
                     style={styles.image}
                     parallaxFactor={0}
                     {...parallaxProps}
                 />
-            </View>
+
+
+            </View >
         );
     };
 
@@ -142,7 +69,7 @@ const DietCarousel = props => {
             <Carousel
                 onPress={goForward}
                 layout={"default"}
-                layoutCardOffset={`18`}
+                layoutCardOffset={18}
                 ref={carouselRef}
                 sliderWidth={screenWidth}
                 sliderHeight={100}

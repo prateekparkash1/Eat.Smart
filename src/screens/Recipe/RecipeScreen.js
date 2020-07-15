@@ -108,8 +108,6 @@ export default class RecipeScreen extends React.Component {
     const { activeSlide } = this.state;
     const { navigation } = this.props;
     const item = navigation.getParam('item');
-    console.log(categories);
-
 
     if (loading) {
       return (

@@ -7,11 +7,11 @@ import { render } from 'react-dom';
 
 export default function App() {
   // const [isLoggedin, setLoggedinStatus] = useState(false);
-  // const [userData, setUserData] = useState(null);
+  // const [userData, setUserData] = useState({});
 
   return <AppContainer />
-
 }
+
 //   async function logIn() {
 //     try {
 //       Facebook.initializeAsync('2753963464882148');
@@ -26,15 +26,9 @@ export default function App() {
 //       });
 
 //       if (type === 'success') {
-
-//         fetch(`https://graph.facebook.com/me?access_token=${token}&fields=id,name,email,picture.height(500)`)
-//           .then(response => response.json())
-//           .then(data => {
-//             setLoggedinStatus(true);
-//             setUserData(data);
-//             console.log(data);
-//           });
-
+//         const apires = fetch(`https://graph.facebook.com/me?access_token=${token}&fields=id,name,email,picture.height(500)`).then(response => response.json())
+//         setLoggedinStatus(true);
+//         setUserData(apires);
 //       } else {
 //         setLoggedinStatus(false)
 //       }
@@ -43,13 +37,8 @@ export default function App() {
 //     }
 //   }
 
-
-
-
 //   if (!isLoggedin) {
-
 //     return (
-
 //       <>
 //         <SafeAreaView style={{ "backgroundColor": "#e3eee9" }}></SafeAreaView>
 //         <ImageBackground source={require('./assets/background.jpeg')} style={styles.image}>

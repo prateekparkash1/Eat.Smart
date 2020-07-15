@@ -36,7 +36,6 @@ export default class RecipesListScreen extends React.Component {
       const categoriesapi = await categoriesApiCall.json();
       this.setState({ categories: categoriesapi, cat_loading: false });
 
-
     } catch (err) {
       console.log("Error fetching data-----------", err);
     }

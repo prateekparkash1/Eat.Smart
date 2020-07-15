@@ -15,7 +15,7 @@ export default class DrawerContainer extends React.Component {
             <Avatar
               size={100}
               rounded
-              title="MD"
+              title="X"
               onPress={() => console.log("Works!")}
               activeOpacity={0.5}
               containerStyle={{ marginLeft: 20, marginTop: 35 }}
@@ -51,7 +51,7 @@ export default class DrawerContainer extends React.Component {
               title="All Recipes"
               source={require('../../../assets/icons/recipe.png')}
               onPress={() => {
-                navigation.navigate('Cuisines');
+                navigation.navigate('AllRecipeScreen');
                 navigation.closeDrawer();
               }}
             />

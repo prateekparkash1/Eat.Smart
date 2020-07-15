@@ -24,13 +24,18 @@ export default class HomeScreen extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      recipes: [],
+      loading: true,
+      categories: [],
+      cat_loading: true,
+      unit: false
+    }
   }
 
-  state = {
-    recipes: [],
-    loading: true,
-    categories: [],
-    cat_loading: true
+
+  changerecipe(item) {
+    this.setState({ unit: item })
   }
 
   async componentDidMount() {
@@ -41,6 +46,7 @@ export default class HomeScreen extends React.Component {
       const categoriesApiCall = await fetch('https://pacific-coast-24914.herokuapp.com/categories');
       const categoriesapi = await categoriesApiCall.json();
       this.setState({ categories: categoriesapi, cat_loading: false });
+
     } catch (err) {
       console.log("Error fetching data-----------", err);
     }
@@ -56,7 +62,6 @@ export default class HomeScreen extends React.Component {
     return name;
   }
 
-
   onPressRecipe = item => {
     this.props.navigation.navigate('Recipe', { item });
   };
@@ -70,6 +75,7 @@ export default class HomeScreen extends React.Component {
       </View>
     </TouchableOpacity >
   );
+
 
   render() {
     const { recipes, loading } = this.state;
@@ -86,15 +92,18 @@ export default class HomeScreen extends React.Component {
               paddingBottom: 20
             }}>Trending Recipes</Text>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <Text style={{ fontSize: 20 }}>Veg </Text>
-              <SwitchButton />
+              <Text style={{ fontSize: 15 }}>Non Veg </Text>
+              <SwitchButton data={{
+                unit: this.state.unit, changerecipe: this.changerecipe.bind(this)
+              }} />
             </View>
           </View>
+
           <FlatList
             vertical
             showsVerticalScrollIndicator={false}
             numColumns={2}
-            data={this.state.recipes}
+            data={this.state.recipes.filter(recipe => recipe.veg_filter === this.state.unit)}
             renderItem={this.renderRecipes}
             keyExtractor={item => `${item.recipeId}`}
           />
