@@ -10,6 +10,7 @@ import {
     StyleSheet,
     Platform,
     TouchableOpacity,
+    Alert,
 } from 'react-native';
 
 const ENTRIES1 = [
@@ -52,13 +53,11 @@ const DietCarousel = props => {
                 <ParallaxImage
                     source={item.illustration}
                     containerStyle={styles.imageContainer}
-                    onPress
+                    onPress={() => console.log("Cancel Pressed")}
                     style={styles.image}
                     parallaxFactor={0}
                     {...parallaxProps}
                 />
-
-
             </View >
         );
     };

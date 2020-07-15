@@ -84,9 +84,11 @@ export default class AllRecipeScreen extends React.Component {
     render() {
         return (
             <View>
+
                 < SwitchButton data={{
                     unit: this.state.unit, changerecipe: this.changerecipe.bind(this)
                 }} />
+
                 <FlatList
                     vertical
                     showsVerticalScrollIndicator={false}
