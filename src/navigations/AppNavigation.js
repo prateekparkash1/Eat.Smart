@@ -11,10 +11,9 @@ import IngredientScreen from '../screens/Ingredient/IngredientScreen';
 import AllRecipeScreen from '../screens/AllRecipeScreen/AllRecipeScreen';
 import SearchScreen from '../screens/Search/SearchScreen';
 import IngredientsDetailsScreen from '../screens/IngredientsDetails/IngredientsDetailsScreen';
-
+import React from 'react';
 
 const Tab = createBottomTabNavigator();
-
 
 const MainNavigator = createStackNavigator(
   {
@@ -41,17 +40,22 @@ const MainNavigator = createStackNavigator(
   }
 );
 
+const DrawerConfig = {
+  drawerPosition: 'left',
+  initialRouteName: 'Main',
+  drawerWidth: 250,
+  contentComponent: (props) => {
+    return (
+      <DrawerContainer navigation={props.navigation} data={props.screenProps} />
+    )
+  }
+}
 
 const DrawerStack = createDrawerNavigator(
   {
     Main: MainNavigator
   },
-  {
-    drawerPosition: 'left',
-    initialRouteName: 'Main',
-    drawerWidth: 250,
-    contentComponent: DrawerContainer
-  }
+  DrawerConfig
 );
 
 

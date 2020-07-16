@@ -13,6 +13,7 @@ export default class HomeScreen extends React.Component {
     headerLeft: () => <MenuImage
       onPress={() => {
         navigation.openDrawer();
+
       }}
     />,
     headerRight: () => <SearchImage
@@ -21,6 +22,7 @@ export default class HomeScreen extends React.Component {
       }}
     />
   });
+
 
   constructor(props) {
     super(props);

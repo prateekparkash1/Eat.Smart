@@ -38,8 +38,8 @@ export default class App extends React.Component {
             });
 
           })
-        console.log(this.state.isLoggedin);
-        console.log(this.state.userData);
+
+
 
       } else {
         setLoggedinStatus(false)
@@ -68,17 +68,16 @@ export default class App extends React.Component {
                   title="Login with Facebook"
                 />
               </View>
+
             </View>
           </ImageBackground>
-
         </>
       )
     }
 
     else {
-      return (<AppContainer user={this.state.userData} />)
+      return (<AppContainer screenProps={{ user: this.state.userData }} />)
     }
-
   }
 }
 

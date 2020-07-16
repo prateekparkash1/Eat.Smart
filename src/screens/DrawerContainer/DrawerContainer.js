@@ -6,8 +6,18 @@ import MenuButton from '../../components/MenuButton/MenuButton';
 import { Avatar } from 'react-native-elements';
 
 export default class DrawerContainer extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: {}
+    }
+  }
+
   render() {
-    const { navigation } = this.props;
+    const { navigation, data } = this.props;
+    console.log(data.user);
+    let uri_data = data.user.picture.data.url;
     return (
       <>
         <View style={styles.profile}>
@@ -19,13 +29,11 @@ export default class DrawerContainer extends React.Component {
               onPress={() => console.log("Works!")}
               activeOpacity={0.5}
               containerStyle={{ marginLeft: 20, marginTop: 35 }}
-
               source={{
-                uri:
-                  'https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1694402474031849&height=500&ext=1597045702&hash=AeQedtV3eXP_NTrs',
+                uri: uri_data
               }}
             />
-            <Text style={{ marginLeft: 20, marginTop: 10, fontSize: 20 }}>Welcome </Text>
+            <Text style={{ marginLeft: 20, marginTop: 10, fontSize: 20 }}>Welcome, {data.user.name.split(' ')[0]}</Text>
           </SafeAreaView>
         </View>
         <View style={styles.content}>
