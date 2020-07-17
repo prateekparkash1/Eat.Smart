@@ -84,7 +84,7 @@ export default class HomeScreen extends React.Component {
     if (!loading) {
       return (
         <>
-          <DietCarousel />
+          <DietCarousel navigation={this.props.navigation} />
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginEnd: 20 }}>
             <Text style={{
               fontSize: 25,

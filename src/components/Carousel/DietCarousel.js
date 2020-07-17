@@ -13,26 +13,25 @@ import AllRecipeScreen from '../../screens/AllRecipeScreen/AllRecipeScreen';
 
 const ENTRIES1 = [
     {
-        title: 'Breakfast',
+
         illustration: require('../../../assets/breakfast.png'),
-        navigate: ''
+        meal_type: 'breakfast'
     },
     {
-        title: 'Lunch',
+
         illustration: require('../../../assets/lunch.png'),
-        navigate: ''
+        meal_type: 'lunch'
     },
     {
-        title: 'Dinner',
         illustration: require('../../../assets/dinner.png'),
-        navigate: ''
+        meal_type: 'dinner'
     },
 
 ];
 const { width: screenWidth } = Dimensions.get('window');
 
 
-const DietCarousel = (props, navigation) => {
+const DietCarousel = (navigation, props) => {
 
 
     const [entries, setEntries] = useState([]);
@@ -48,12 +47,11 @@ const DietCarousel = (props, navigation) => {
 
     const renderItem = ({ item, index }, parallaxProps) => {
         return (
-            <TouchableOpacity activeOpacity={0.5} onPress={() => Alert.alert('Hi')}>
+            <TouchableOpacity activeOpacity={0.5} onPress={() => { navigation.navigation.navigate('AllRecipeScreen', { item: item.meal_type }); }}>
                 <View style={styles.item}>
                     <ParallaxImage
                         source={item.illustration}
                         containerStyle={styles.imageContainer}
-                        onPress={() => console.log("Cancel Pressed")}
                         style={styles.image}
                         parallaxFactor={0}
                         {...parallaxProps}

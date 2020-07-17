@@ -18,15 +18,12 @@ export default class CategoriesScreen extends React.Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
       recipes: [],
       loading: true,
       categories: [],
       cat_loading: true
     }
-
-
   }
 
 

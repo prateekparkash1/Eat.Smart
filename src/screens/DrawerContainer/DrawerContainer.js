@@ -58,7 +58,7 @@ export default class DrawerContainer extends React.Component {
               title="All Recipes"
               source={require('../../../assets/icons/recipe.png')}
               onPress={() => {
-                navigation.navigate('AllRecipeScreen');
+                navigation.navigate('AllRecipeScreen', { item: 'lunch' });
                 navigation.closeDrawer();
               }}
             />

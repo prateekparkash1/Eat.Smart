@@ -9,7 +9,7 @@ import {
 import SwitchButton from '../../components/SwitchButton/SwitchButton'
 import styles from './styles';
 
-export default class AllRecipeScreen extends React.Component {
+export default class Recipes extends React.Component {
 
     constructor(props) {
         super(props);
@@ -76,6 +76,7 @@ export default class AllRecipeScreen extends React.Component {
         </TouchableOpacity>
     );
     render() {
+        console.log(this.props);
         return (
             <View>
                 <View style={{ flexDirection: "row", justifyContent: "flex-end", marginTop: 10 }}>
