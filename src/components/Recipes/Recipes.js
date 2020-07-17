@@ -78,9 +78,12 @@ export default class AllRecipeScreen extends React.Component {
     render() {
         return (
             <View>
-                < SwitchButton data={{
-                    unit: this.state.unit, changerecipe: this.changerecipe.bind(this)
-                }} />
+                <View style={{ flexDirection: "row", justifyContent: "flex-end", marginTop: 10 }}>
+                    <Text>Non Veg</Text>
+                    < SwitchButton data={{
+                        unit: this.state.unit, changerecipe: this.changerecipe.bind(this)
+                    }} />
+                </View>
                 <FlatList
                     vertical
                     showsVerticalScrollIndicator={false}

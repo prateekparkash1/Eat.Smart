@@ -16,7 +16,6 @@ export default class DrawerContainer extends React.Component {
 
   render() {
     const { navigation, data } = this.props;
-    console.log(data.user);
     let uri_data = data.user.picture.data.url;
     return (
       <>
@@ -25,7 +24,7 @@ export default class DrawerContainer extends React.Component {
             <Avatar
               size={100}
               rounded
-              title="X"
+              title={data.user.name.split(' ')[0].charAt(0).concat(data.user.name.split(' ')[1].charAt(0))}
               onPress={() => console.log("Works!")}
               activeOpacity={0.5}
               containerStyle={{ marginLeft: 20, marginTop: 35 }}
