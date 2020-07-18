@@ -11,6 +11,9 @@ import IngredientScreen from '../screens/Ingredient/IngredientScreen';
 import AllRecipeScreen from '../screens/AllRecipeScreen/AllRecipeScreen';
 import SearchScreen from '../screens/Search/SearchScreen';
 import IngredientsDetailsScreen from '../screens/IngredientsDetails/IngredientsDetailsScreen';
+import RecipeOfTheDay from '../screens/RecipeOfTheDay/RecipeOfTheDay';
+
+RecipeOfTheDay
 import React from 'react';
 
 const Tab = createBottomTabNavigator();
@@ -24,7 +27,8 @@ const MainNavigator = createStackNavigator(
     Ingredient: IngredientScreen,
     AllRecipeScreen: AllRecipeScreen,
     Search: SearchScreen,
-    IngredientsDetails: IngredientsDetailsScreen
+    IngredientsDetails: IngredientsDetailsScreen,
+    RecipeOfTheDay: RecipeOfTheDay
   },
   {
     initialRouteName: 'Home',

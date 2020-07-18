@@ -42,6 +42,26 @@ export default class AllRecipeScreen extends React.Component {
         }
     }
 
+
+    shuffle(array) {
+        var currentIndex = array.length, temporaryValue, randomIndex;
+
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            // And swap it with the current element.
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+
+        return array;
+    }
+
     changerecipe(item) {
         this.setState({ unit: item })
     }
@@ -82,7 +102,6 @@ export default class AllRecipeScreen extends React.Component {
     );
 
     render() {
-        console.log(this.props.navigation.state.params.item);
         return (
             <View>
                 <View style={{ flexDirection: "row", justifyContent: "flex-end", marginTop: 10 }}>
@@ -95,7 +114,9 @@ export default class AllRecipeScreen extends React.Component {
                     vertical
                     showsVerticalScrollIndicator={false}
                     numColumns={2}
-                    data={this.state.recipes.filter(recipe => recipe.veg_filter === this.state.unit).filter(recipe => recipe.meal_type === this.props.navigation.state.params.item)}
+                    data={this.shuffle(this.state.recipes
+                        .filter(recipe => recipe.veg_filter === this.state.unit).filter(recipe => recipe.meal_type === this.props.navigation.state.params.item))
+                    }
                     renderItem={this.renderRecipes}
                     keyExtractor={item => `${item.recipeId}`}
                 />

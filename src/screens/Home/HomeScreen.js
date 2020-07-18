@@ -53,6 +53,25 @@ export default class HomeScreen extends React.Component {
     }
   }
 
+  shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+  }
+
   getCategoryName(categoryId) {
     let name;
     this.state.categories.map(data => {
@@ -104,7 +123,7 @@ export default class HomeScreen extends React.Component {
             vertical
             showsVerticalScrollIndicator={false}
             numColumns={2}
-            data={this.state.recipes.filter(recipe => recipe.veg_filter === this.state.unit)}
+            data={this.shuffle(this.state.recipes.filter(recipe => recipe.veg_filter === this.state.unit))}
             renderItem={this.renderRecipes}
             keyExtractor={item => `${item.recipeId}`}
           />

@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     },
     shadowRadius: 5,
     shadowOpacity: 1,
-    elevation: 3
+
   },
   categoriesName: {
     flex: 1,

@@ -43,6 +43,25 @@ export default class CategoriesScreen extends React.Component {
     }
   }
 
+  shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+  }
+
   onPressCategory = item => {
     const title = item.name;
     const category = item;
@@ -60,7 +79,7 @@ export default class CategoriesScreen extends React.Component {
   }
 
   renderCategory = ({ item }) => (
-    <TouchableOpacity activeOpacity='0.5' onPress={() => this.onPressCategory(item)}>
+    <TouchableOpacity activeOpacity={0.5} onPress={() => this.onPressCategory(item)}>
       <View style={styles.categoriesItemContainer}>
         <Image style={styles.categoriesPhoto} source={{ uri: item.photo_url }} />
         <Text style={styles.categoriesName}>{item.name}</Text>
@@ -75,7 +94,7 @@ export default class CategoriesScreen extends React.Component {
       return (
         <View>
           <FlatList
-            data={this.state.categories}
+            data={this.shuffle(this.state.categories)}
             renderItem={this.renderCategory}
             keyExtractor={item => `${item.id}`}
           />

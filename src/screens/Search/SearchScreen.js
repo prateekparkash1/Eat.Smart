@@ -18,7 +18,7 @@ export default class SearchScreen extends React.Component {
     super(props);
     this.state = {
       value: '',
-      data: [],
+      data: '',
       recipes: [],
       loading: true,
       categories: [],
