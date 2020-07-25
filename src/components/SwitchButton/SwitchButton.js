@@ -17,7 +17,6 @@ export default class SwitchButton extends React.Component {
             isEnabled: !state.isEnabled,
         }));
 
-        console.log(`veg: ${this.state.isEnabled}`);
         this.props.data.changerecipe(this.state.isEnabled);
 
     }

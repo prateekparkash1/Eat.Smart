@@ -158,16 +158,25 @@ export default class RecipeScreen extends React.Component {
           <View style={styles.infoRecipeContainer}>
             <Text style={styles.infoRecipeName}>{item.title}</Text>
             <View style={styles.infoContainer}>
-              <TouchableHighlight
+              <TouchableHighlight activeOpacity={0.5}
                 onPress={() => navigation.navigate('RecipesList', { category, title })}
               >
+
                 <Text style={styles.category}>{this.getCategoryName(item.categoryId).toUpperCase()}</Text>
               </TouchableHighlight>
             </View>
 
             <View style={styles.infoContainer}>
+              <Image style={styles.infoPhoto} source={require('../../../assets/icons/servings.png')} />
+              <Text style={styles.infoRecipe}> Servings: {item.serves} </Text>
+            </View>
+            <View style={styles.infoContainer}>
+              <Image style={styles.infoPhoto} source={require('../../../assets/icons/calories.png')} />
+              <Text style={styles.infoRecipe}>Calories: {item.calories}  </Text>
+            </View>
+            <View style={styles.infoContainer}>
               <Image style={styles.infoPhoto} source={require('../../../assets/icons/time.png')} />
-              <Text style={styles.infoRecipe}>{item.time} minutes </Text>
+              <Text style={styles.infoRecipe}> Cooking Time: {item.time} Mins </Text>
             </View>
 
             <View style={styles.infoContainer}>
@@ -186,9 +195,6 @@ export default class RecipeScreen extends React.Component {
         </ScrollView>
       );
     }
-
-
-
   }
 
 }

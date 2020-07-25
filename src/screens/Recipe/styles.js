@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
+    marginTop: 10
   },
   buttonContainer: {
     flex: 1,
@@ -64,9 +65,16 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: 'bold',
     marginLeft: 5,
+
+  },
+  box: {
+    borderRadius: 10,
+    borderColor: '#fd7400',
+    borderWidth: 1,
+
   },
   category: {
-    fontSize: 14,
+    fontSize: 15,
     fontWeight: 'bold',
     margin: 10,
     color: '#fd7400'
@@ -78,8 +86,8 @@ const styles = StyleSheet.create({
     margin: 15
   },
   infoRecipeName: {
-    fontSize: 28,
-    margin: 10,
+    fontSize: 24,
+    margin: 5,
     fontWeight: 'bold',
     color: '#000',
     textAlign: 'center'

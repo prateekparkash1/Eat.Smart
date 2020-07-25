@@ -6,7 +6,7 @@ import styles from './styles';
 export default class ViewIngredientsButton extends React.Component {
   render() {
     return (
-      <TouchableOpacity activeOpacity='0.5' onPress={this.props.onPress}>
+      <TouchableOpacity activeOpacity={0.5} onPress={this.props.onPress}>
         <View style={styles.container}>
           <Text style={styles.text}>View Ingredients</Text>
         </View>
@@ -14,7 +14,6 @@ export default class ViewIngredientsButton extends React.Component {
     );
   }
 }
-
 ViewIngredientsButton.propTypes = {
   onPress: PropTypes.func,
   source: PropTypes.number,

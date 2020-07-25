@@ -6,7 +6,6 @@ import * as Facebook from 'expo-facebook';
 import { render } from 'react-dom';
 
 export default class App extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -36,40 +35,29 @@ export default class App extends React.Component {
               isLoggedin: true,
               userData: data
             });
-
           })
-
-
-
       } else {
         setLoggedinStatus(false)
       }
     } catch ({ message }) {
-      alert(`Facebook Login Error: ${message}`);
+      alert(`Oops! Something broke. Please Try Again!`);
     }
   }
   render() {
     if (!this.state.isLoggedin) {
       return (
         <>
-          <SafeAreaView style={{ "backgroundColor": "#e3eee9" }}></SafeAreaView>
-          <ImageBackground source={require('./assets/background.jpeg')} style={styles.image}>
-            <View style={{
-              flex: 1,
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "space-around",
-            }}>
-              <Image source={require('./assets/logo.gif')} />
-              <View style={{ flexDirection: "row", justifyContent: "space-evenly", alignItems: "stretch" }}>
-                <Image source={require('./assets/icons/fb.png')} style={{ height: 40, width: 40 }} />
-                <Button
-                  onPress={this.logIn}
-                  title="Login with Facebook"
-                />
-              </View>
+          <ImageBackground source={require('./assets/logo.gif')} style={styles.image}>
 
+            <View style={{ flex: 1, flexDirection: "row", justifyContent: "center", alignItems: "flex-end", marginBottom: 50 }}>
+              <Image source={require('./assets/icons/fb.png')} style={{ height: 40, width: 40 }} />
+              <Button
+                onPress={this.logIn}
+                title="Login with Facebook"
+              />
             </View>
+
+
           </ImageBackground>
         </>
       )
