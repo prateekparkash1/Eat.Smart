@@ -112,7 +112,7 @@ export default class HomeScreen extends React.Component {
               paddingBottom: 20
             }}>Trending Recipes</Text>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <Text style={{ fontSize: 15 }}>Non Veg </Text>
+              <Text style={{ fontSize: 15 }}>Veg </Text>
               <SwitchButton data={{
                 unit: this.state.unit, changerecipe: this.changerecipe.bind(this)
               }} />

@@ -105,7 +105,7 @@ export default class AllRecipeScreen extends React.Component {
         return (
             <View>
                 <View style={{ flexDirection: "row", justifyContent: "flex-end", marginTop: 10 }}>
-                    <Text>Non Veg</Text>
+                    <Text>Veg</Text>
                     < SwitchButton data={{
                         unit: this.state.unit, changerecipe: this.changerecipe.bind(this)
                     }} />
